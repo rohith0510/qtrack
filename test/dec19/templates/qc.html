@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
+      data-theme="theme-default" data-assets-path="static/assets/" data-template="vertical-menu-template"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Dashboard - QC |  - Bootstrap Admin Template</title>
+    <meta name="description" content="" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="static/assets/img/favicon/favicon.ico" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+    <!-- Icons -->
+    <link rel="stylesheet" href="static/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="static/assets/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="static/assets/vendor/fonts/flag-icons.css" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="static/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="static/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="static/assets/css/demo.css" />
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="static/assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="static/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="static/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="static/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="static/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="static/assets/vendor/css/pages/app-logistics-dashboard.css" />
+    <!-- Helpers -->
+    <script src="static/assets/vendor/js/helpers.js"></script>
+    <script src="static/assets/vendor/js/template-customizer.js"></script>
+    <script src="static/assets/js/config.js"></script>
+
+    <style>
+        .active-menu-link {
+    background-color: #9487ea; /* Blue background color similar to Outlook Messenger */
+    color: #ffffff; /* White text color */
+    font-weight: bold; /* Optionally, make the text bold */
+    /* Add any other styling you want to apply to the active menu link */
+}
+.user-card {
+  width: 300px; /* Adjust width as needed */
+}
+
+.user-card .user-avatar-section img {
+  height: 80px; /* Adjust height as needed */
+  width: 80px; /* Adjust width as needed */
+}
+
+.user-card .user-info {
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.user-card .card-body {
+  padding: 20px; /* Adjust padding as needed */
+}
+.row {
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-start; /* Align items to the start of the flex container (left side) */
+    align-items: flex-start; /* Align items to the start of the flex container (top) */
+  }
+  .user-card, .project-lists {
+    flex: 1;
+      /* Let both the card and the table take equal space */
+  }
+  .project-lists {
+    margin-left: -190px; /* Add margin on the left for spacing between the table and the card */
+  }
+    </style>
+
+</head>
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo ">
+                    <a href="index.html" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+                            <img src="static/assets/img/favicon/favicon.ico" />
+                        </span>
+                        <span class="app-brand-text demo menu-text fw-bold">VulcansBuild</span>
+                    </a>
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                        <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+                        <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+                    </a>
+                </div>
+                <div class="menu-inner-shadow"></div>
+                <ul class="menu-inner py-1">
+                    <!-- Dashboards -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle" id="dashboardLink">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards">Dashboards</div>
+
+                        </a>
+                    </li>
+                    <!-- Users -->
+<li class="menu-item">
+    <a href="javascript:void(0);" class="menu-link menu-toggle" id="userMenuToggle">
+        <i class="menu-icon tf-icons ti ti-users"></i>
+        <div data-i18n="Users">Users</div>
+    </a>
+    <ul class="menu-sub" id="userMenuSub">
+        <li class="menu-item">
+            <a href="#" class="menu-link" id="userListLink">
+                <div data-i18n="List">List</div>
+            </a>
+        </li>
+    </ul>
+</li>
+                  <!-- Views -->
+                     <li class="menu-item">
+                         <a href="javascript:void(0);" class="menu-link menu-toggle" id="viewsLink">
+                             <i class="menu-icon tf-icons ti ti-components"></i>
+                              <div data-i18n="Views">Views</div>
+                             </a>
+                         </li>
+
+
+<!-- Account -->
+                    <li class="menu-item">
+          <a href="javascript:void(0);" class="menu-link menu-toggle" id="accountLink">
+               <i class="menu-icon tf-icons ti ti-lock"></i>
+            <div data-i18n="Account Settings">Account Settings</div>
+          </a>
+                        </li>
+<!-- End of Users -->
+                </ul>
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="ti ti-menu-2 ti-sm"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item navbar-search-wrapper mb-0">
+                                <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                                    <i class="ti ti-search ti-md me-2"></i>
+                                    <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /Search -->
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- Style Switcher -->
+                            <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <i class="ti ti-md"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                                    <li>
+                                        <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                                            <span class="align-middle"><i class="ti ti-sun me-2"></i>Light</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                                            <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                                            <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- / Style Switcher-->
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="static/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img src="static/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span class="fw-medium d-block">Abinaya</span>
+                                                    <small class="text-muted">Admin</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="pages-profile-user.html">
+                                            <i class="ti ti-user-check me-2 ti-sm"></i>
+                                            <span class="align-middle">My Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                            <i class="ti ti-settings me-2 ti-sm"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                                            <i class="ti ti-logout me-2 ti-sm"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
+                    <!-- Search Small Screens -->
+                    <div class="navbar-search-wrapper search-input-wrapper d-none">
+                        <input
+                            type="text"
+                            class="form-control search-input container-xxl border-0"
+                            placeholder="Search..."
+                            aria-label="Search..." />
+                        <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+                    </div>
+                </nav>
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <!-- Dashboard Content -->
+                        <div id="dashboardContent">
+                            <h4 class="py-3 mb-4">Dashboard</h4>
+                            <div class="row">
+                                <!-- Project statistics -->
+                                <div class="col-lg-6 col-xxl-6 mb-4 order-3 order-xxl-1">
+                                    <div class="card">
+                                        <div class="card-header d-flex align-items-center justify-content-between">
+                                            <div class="card-title mb-0">
+                                                <h5 class="m-0 me-2">Project statistics</h5>
+                                                <small class="text-muted">Total number of Projects 14</small>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="shipmentStatisticsChart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- / Project statistics -->
+                                <!-- Modeller statistics -->
+                                <div class="col-xl-6 col-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-header header-elements">
+                                            <h5 class="card-title mb-0">Modeller Statistics</h5>
+                                            <div class="card-action-element ms-auto py-0">
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="barChart" class="chartjs" data-height="400" height="500"
+                                                style="display: block; box-sizing: border-box; height: 293px; width: 830px;"
+                                                width="1038"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Dashboard Content -->
+
+                        <!-- User Details Content -->
+                        <div id="userDetailsContent" style="display: none;">
+                            <h4 class="py-3 mb-4">User Details</h4>
+
+
+                    <!-- Add your user details content here -->
+<div class="row g-4">
+  <!-- For each role, display its count -->
+  {% for role, count in role_counts.items() %}
+  <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h6 class="fw-normal mb-2">Total {{ role }}: {{ count }}</h6>
+          <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
+            <!-- Loop through users for the current role and display their avatars -->
+            {% for user in roles if user['Role'] == role %}
+            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="{{ user['Username'] }}" class="avatar avatar-sm pull-up">
+              <img class="rounded-circle" src="static/uploads{{ user['photo filename'] }}" alt="Avatar">
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="d-flex justify-content-between align-items-end mt-1">
+          <div class="role-heading">
+            <h4 class="mb-1">{{ role }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+         <!-- Add your user details content here -->
+                    <!-- Add your user details content here -->
+    <div class="card">
+    <h5 class="card-header">USER LIST</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                {% for user in users %}
+                <tr>
+                    <td>{{ user['user_id'] }}</td>
+                    <td>{{ user['first_name'] }} {{ user['last_name'] }}</td>
+                    <td>{{ user['email'] }}</td>
+                    <td>{{ user['role'] }}</td>
+                     <td><img src="{{ url_for('static', filename='uploads/' + user['photo_filename']) }}" alt="User Photo" style="max-width: 50px;"></td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ti ti-dots-vertical"></i></button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item view-user" href="javascript:void(0);" data-username="{{ user['first_name'] }} {{ user['last_name'] }}" data-email="{{ user['email'] }}" data-phone_number="{{ user['phone_number'] }}" data-status="{{ user['status'] }}" data-role="{{ user['role'] }}" data-project="{{ user['project'] }}" data-state_file="{{ user['state_file'] }}"><i class="ti ti-pencil me-1"></i>View</a>
+
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="delete-message" class="mt-3"></div>
+                        </div>
+
+<!-- Placeholder for displaying user details under the "Views" menu -->
+                    <!-- views Content -->
+                        <div id="viewsContent">
+                            <div class="row">
+                            </div>
+                            </div>
+
+
+
+<!-- Account -->
+  <div id="AccountContent" style="display: none;">
+    <h4 class="py-3 mb-4">Account Details</h4>
+    <div class="card-body">
+        <div class="d-flex align-items-start align-items-sm-center gap-4">
+             <img id="photoPreview" src="#" alt="Uploaded Photo" style="display: none; max-width: 100px; height: auto;">
+             <div class="button-wrapper">
+        </div>
+    </div>
+</div>
+      <hr class="my-0">
+      <div class="card-body">
+        <form id="formAccountSettings" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+
+<input class="form-control" type="text" id="firstName" name="first_name"  />
+
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input class="form-control" type="text" name="last_name" id="lastName" />
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="email" class="form-label">E-mail</label>
+              <input class="form-control" type="text" id="email" name="email" />
+            </div>
+           <div class="mb-3 col-md-6">
+    <label for="Role" class="form-label">Role</label>
+    <select class="form-select" id="Role" name="Role">
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Modeller">Modeller</option>
+         <option value="Teamleader">Teamleader</option>
+         <option value="QC">QC</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label" for="phoneNumber">Phone Number</label>
+              <div class="input-group input-group-merge">
+                <span class="input-group-text">Ind (+91)</span>
+                <input type="text" id="phoneNumber" name="phone_number" class="form-control" placeholder="1234567890" />
+              </div>
+            </div>
+           <div class="mb-3 col-md-6">
+    <label for="Project" class="form-label">Project</label>
+    <select class="form-select" id="Project" name="project">
+        <option value="None">None</option>
+        <option value="KFAA">KFAA</option>
+        <option value="Arena">Arena</option>
+        <option value="ESEC">ESEC</option>
+        <option value="Horizon">Horizon</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+          <div class="mb-3 col-md-6">
+    <label for="state" class="form-label">State</label>
+    <div class="input-group">
+        <input type="file" class="form-control" id="state" name="state_file" accept=".txt, .pdf, .docx" style="display: none;">
+        <input type="text" class="form-control" id="fileNameDisplay" placeholder="Choose file" readonly>
+        <button type="button" class="btn btn-primary" id="uploadBtn">Upload</button>
+    </div>
+</div>
+
+<div class="mb-3 col-md-6">
+    <label for="photo" class="form-label">Photo Upload</label>
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*" onchange="displayPhotoPreview(this)">
+    </div>
+    <img id="photoPreview" src="#" alt="Uploaded Photo" style="display: none; max-width: 100px; height: auto;">
+</div>
+
+</div>
+        <div class="mb-3 col-md-6">
+              <label for="Status" class="form-label">Status</label>
+              <select class="form-select" id="Status" name="Status">
+                  <option value="None">None</option>
+        <option value="Input">Input</option>
+        <option value="Inprogress">Inprogress</option>
+        <option value="Completed">Completed</option>
+
+
+    </select>
+            </div>
+
+
+          <div class="mt-2">
+            <button type="submit" class="btn btn-primary me-2">Save</button>
+            <button type="reset" class="btn btn-label-secondary">Reset</button>
+          </div>
+        </form>
+      </div>
+
+
+      <!-- /Account -->
+    </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          </div>
+          <!-- / Content -->
+                <div class="content-backdrop fade"></div>
+  <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function displayPhotoPreview(input) {
+    var photoPreview = document.getElementById('photoPreview');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            photoPreview.style.display = 'block';
+            photoPreview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+</script>
+
+<script>
+$(document).ready(function() {
+    // Add event listener to handle "View" option click
+    $('.view-user').click(function(event) {
+        event.preventDefault();
+
+        // Get user details from data attributes
+        const username = $(this).data('username');
+        const email = $(this).data('email');
+        const phone_number = $(this).data('phone_number');
+        const status = $(this).data('status');
+        const role = $(this).data('role');
+        const project = $(this).data('project');
+        const state_file = $(this).data('state_file');
+        const photo_filename = $(this).data('photo');
+        // Extract photo filename/path
+
+        console.log('Photo Filename:', photo_filename);
+
+        // Clone the image from the user list
+        const $userListImage = $(this).closest('tr').find('img').clone();
+// Create table HTML with adjusted size
+const tableHTML = `
+    <div class="col-md-6">
+        <div class="card mb-4 project-lists">
+            <div class="card-header">Project Lists</div>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped project-table"> <!-- Add table-striped class for striped rows -->
+                    <thead>
+                        <tr>
+                            <th>S.No</th> <!-- Adjust column widths as needed -->
+                            <th>Project</th>
+                            <th>State File</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tbody class="table-border-bottom-0">
+                            <!-- Iterate over user data to populate table rows -->
+                            <tr>
+                                <td>1</td>
+                                <td>${project}</td>
+                                <td><a href="/static/uploads/${state_file}" target="_blank">${state_file}</a></td>
+                                <td><span class="badge bg-label-success">${status}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+
+        // Create user card HTML with embedded table
+        const userCardHTML = `
+            <div class="col-md-6">
+                <div class="card mb-4 user-card">
+                    <div class="card-body">
+                        <div class="user-avatar-section">
+                            <div class="d-flex align-items-center flex-column">
+                                ${$userListImage.prop('outerHTML')} <!-- Paste the cloned image here -->
+                                <div class="user-info text-center">
+                                    <h4 class="mb-2">${username}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around flex-wrap mt-3 pt-3 pb-4 border-bottom">
+                            <!-- Additional user details can be added here -->
+                        </div>
+                        <p class="mt-4 small text-uppercase text-muted">Details</p>
+                        <div class="info-container">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <span class="fw-medium me-1">Username:</span>
+                                    <span>${username}</span>
+                                </li>
+                                <li class="mb-2 pt-1">
+                                    <span class="fw-medium me-1">Email:</span>
+                                    <span>${email}</span>
+                                </li>
+                                <li class="mb-2 pt-1">
+                                    <span class="fw-medium me-1">Phone Number:</span>
+                                    <span>${phone_number}</span>
+                                </li>
+                                <li class="mb-2 pt-1">
+                                    <span class="fw-medium me-1">Status:</span>
+                                    <span class="badge bg-label-success">${status}</span>
+                                </li>
+                                <li class="mb-2 pt-1">
+                                    <span class="fw-medium me-1">Role:</span>
+                                    <span>${role}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Create a row and append user card and table side by side
+        const rowHTML = `
+            <div class="row">
+                ${userCardHTML}
+                ${tableHTML}
+            </div>
+        `;
+
+        // Remove any existing content within the userDetailsContainer
+        $('#viewsContent').html(rowHTML);
+
+        // Scroll to the "Views" section
+        $('html, body').animate({
+            scrollTop: $('#viewsContent').offset().top
+        }, 'slow');
+    });
+});
+</script>
+
+
+
+
+
+    <script>
+    document.getElementById("accountLink").addEventListener("click", function() {
+        // Make an AJAX request to your Flask server
+        fetch('/accountsettings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                // You can include any data you want to send to the server here
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server as needed
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle any errors that occur during the request
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Upload File (State)
+    const stateInput = document.getElementById("state");
+    const fileNameDisplay = document.getElementById("fileNameDisplay");
+    const uploadBtn = document.getElementById("uploadBtn");
+
+    uploadBtn.addEventListener("click", function() {
+        stateInput.click();
+    });
+
+    stateInput.addEventListener("change", function() {
+        const uploadedFile = this.files[0];
+        if (uploadedFile) {
+            // Update the value of the input field to display the filename
+            fileNameDisplay.value = uploadedFile.name;
+            // Hide the file input field
+            stateInput.style.display = "none";
+            // Hide the upload button
+            uploadBtn.style.display = "none";
+
+
+
+        }
+    });
+
+    // Form Submission
+    const form = document.getElementById("formAccountSettings");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(this); // Collect form data
+        fetch('/accountsettings', {
+            method: 'POST',
+            body: formData // Send form data
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle response
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Error:', error);
+        });
+    });
+
+
+    // Form Reset
+     const resetBtn = document.querySelector("button[type='reset']");
+
+    resetBtn.addEventListener("click", function() {
+        // Reset form fields or perform any other necessary actions
+        console.log("Form reset!");
+        alert("Form reset!");
+
+         // Clear file input
+        fileNameDisplay.value = ""; // Clear displayed file na
+        uploadBtn.style.display = "block";
+        // Show the upload button
+
+    });
+});
+</script>
+
+
+
+
+                     <script>
+    // Add event listeners to all elements with the class 'delete-user'
+    document.querySelectorAll('.delete-user').forEach(button => {
+        button.addEventListener('click', function(event) {
+            // Prevent the default action (e.g., following the link)
+            event.preventDefault();
+            // Get the value of the 'data-sno' attribute from the clicked element
+            const s_no = this.getAttribute('data-sno');
+            // Send a POST request to the server to delete the user
+            fetch('/delete_user', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    s_no: s_no
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => {
+                // Check if the response is ok (status code 200)
+                if (response.ok) {
+                    // Display a success message in the HTML element with ID 'delete-message'
+                    document.getElementById('delete-message').innerHTML = '<div class="alert alert-success" role="alert">User deleted successfully</div>';
+                    // Optionally, reload the page or update the table after successful deletion
+                    // window.location.reload();
+                } else {
+                    // Log an error message if deletion fails
+                    console.error('Failed to delete user');
+                }
+            })
+            .catch(error => console.error('Error:', error)); // Log any errors that occur during the fetch request
+        });
+    });
+</script>
+                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Function to toggle the visibility of dashboard content
+    function toggleDashboardContent() {
+        document.getElementById('dashboardContent').style.display = 'block';
+        document.getElementById('userDetailsContent').style.display = 'none';
+        document.getElementById('viewsContent').style.display = 'none';
+        document.getElementById('AccountContent').style.display = 'none';
+
+        // Add active class to dashboard link and remove from others
+        document.getElementById('dashboardLink').classList.add('active-menu-link');
+        document.getElementById('userListLink').classList.remove('active-menu-link');
+        document.getElementById('viewsLink').classList.remove('active-menu-link');
+        document.getElementById('accountLink').classList.remove('active-menu-link');
+    }
+
+    // Function to toggle the visibility of user details content
+    function toggleUserDetailsContent() {
+        document.getElementById('dashboardContent').style.display = 'none';
+        document.getElementById('userDetailsContent').style.display = 'block';
+        document.getElementById('viewsContent').style.display = 'none';
+        document.getElementById('AccountContent').style.display = 'none';
+
+        // Add active class to user list link and remove from others
+        document.getElementById('dashboardLink').classList.remove('active-menu-link');
+        document.getElementById('userListLink').classList.add('active-menu-link');
+        document.getElementById('viewsLink').classList.remove('active-menu-link');
+        document.getElementById('accountLink').classList.remove('active-menu-link');
+    }
+
+    // Function to toggle the visibility of views content
+    function toggleViewsContent() {
+        document.getElementById('dashboardContent').style.display = 'none';
+        document.getElementById('userDetailsContent').style.display = 'none';
+        document.getElementById('viewsContent').style.display = 'block';
+        document.getElementById('AccountContent').style.display = 'none';
+
+        // Add active class to views link and remove from others
+        document.getElementById('dashboardLink').classList.remove('active-menu-link');
+        document.getElementById('userListLink').classList.remove('active-menu-link');
+        document.getElementById('viewsLink').classList.add('active-menu-link');
+        document.getElementById('accountLink').classList.remove('active-menu-link');
+
+        // Scroll to the "Views" section
+        document.getElementById('viewsContent').scrollIntoView();
+    }
+
+    // Function to toggle the visibility of Account content
+    function toggleAccountContent() {
+        document.getElementById('dashboardContent').style.display = 'none';
+        document.getElementById('userDetailsContent').style.display = 'none';
+        document.getElementById('viewsContent').style.display = 'none';
+        document.getElementById('AccountContent').style.display = 'block';
+
+        // Add active class to account link and remove from others
+        document.getElementById('dashboardLink').classList.remove('active-menu-link');
+        document.getElementById('userListLink').classList.remove('active-menu-link');
+        document.getElementById('viewsLink').classList.remove('active-menu-link');
+        document.getElementById('accountLink').classList.add('active-menu-link');
+    }
+
+    // Event listener for dashboard menu click
+    document.getElementById('dashboardLink').addEventListener('click', function () {
+        toggleDashboardContent(); // Call the toggleDashboardContent function when "Dashboard" menu is clicked
+    });
+
+    // Event listener for user list menu click
+    document.getElementById('userListLink').addEventListener('click', function () {
+        toggleUserDetailsContent(); // Call the toggleUserDetailsContent function when "User List" menu is clicked
+    });
+
+    // Event listener for views menu click
+    document.getElementById('viewsLink').addEventListener('click', function () {
+        toggleViewsContent(); // Call the toggleViewsContent function when "Views" menu is clicked
+    });
+
+    // Event listener for account menu click
+    document.getElementById('accountLink').addEventListener('click', function () {
+        toggleAccountContent(); // Call the toggleAccountContent function when "Account" menu is clicked
+    });
+
+    // Add event listener for the "View" button click to switch to the "Views" section
+    document.querySelectorAll('.view-user').forEach(function (button) {
+        button.addEventListener('click', function () {
+            toggleViewsContent(); // Call the toggleViewsContent function when "View" button is clicked
+        });
+    });
+});
+
+</script>
+
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="static/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="static/assets/vendor/libs/popper/popper.js"></script>
+    <script src="static/assets/vendor/js/bootstrap.js"></script>
+    <script src="static/assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="static/assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="static/assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="static/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="static/assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="static/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="static/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="static/assets/vendor/libs/chartjs/chartjs.js"></script>
+
+    <!-- Main JS -->
+    <script src="static/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="static/assets/js/app-logistics-dashboard.js"></script>
+    <script src="static/assets/js/charts-chartjs.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+import requests
+from datetime import datetime,timezone
+
+url = "https://zedbee.io/api/micro/service/call/get/zedbee/equipment/history?"
+params = {
+    'equipmentId': 'ZBEID0001'
+}
+
+api_key = "d0906e77-e2c6-498d-ac40-331fc7f47780"
+domain = "HLUKFHOIVI"
+
+headers = {
+    'Content-Type': 'application/json',
+    'key': api_key,
+    'domainKey': domain,
+}
+
+try:
+    response = requests.get(url, params=params, headers=headers)
+    if response.status_code == 200:
+        response_data = response.json()
+        if 'result' in response_data and 'data' in response_data['result']:
+            for entry in response_data['result']['data']:
+                if '_source' in entry:
+                    source_data = entry['_source']
+
+                    co2_value = source_data.get('cotwo', 'N/A')
+                    rh_value = source_data.get('hum', 'N/A')
+                    pm1_value = source_data.get('pmone', 'N/A')
+                    pm25_value = source_data.get('pmtwofive', 'N/A')
+                    pm10_value = source_data.get('pmten', 'N/A')
+                    tvoc_value = source_data.get('tvoc', 'N/A')
+                    aqc_value = source_data.get('aqc', 'N/A')
+                    aqi_value = source_data.get('aqi', 'N/A')
+                    temp_value = source_data.get('temp', 'N/A')
+
+                    timestamp_in_milliseconds = entry['sort'][0]
+                    timestamp_in_seconds = timestamp_in_milliseconds / 1000.0
+                    utc_datetime = datetime.fromtimestamp(timestamp_in_seconds, timezone.utc)
+                    human_readable_timestamp = utc_datetime.strftime('%Y-%m-%d %H:%M:%S')
+
+                    print(f"Timestamp: {human_readable_timestamp}, CO2: {co2_value}, RH: {rh_value}, PM1: {pm1_value}, PM2.5: {pm25_value}, PM10: {pm10_value}, TVOC: {tvoc_value}, AQC: {aqc_value}, AQI: {aqi_value}, Temperature: {temp_value}")
+        else:
+            print(f"Error in response format: {response_data}")
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.text)
+
+except requests.exceptions.RequestException as e:
+    print(f"Request error: {e}")

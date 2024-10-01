@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management</title>
+</head>
+<body>
+    <h1>Project Management</h1>
+
+    <!-- Form to Add a New Project -->
+    <form action="{{ url_for('save_project') }}" method="POST">
+        <label for="project_id">Project ID:</label>
+        <input type="text" id="project_id" name="project_id" required><br><br>
+
+        <label for="project_name">Project Name:</label>
+        <input type="text" id="project_name" name="project_name" required><br><br>
+
+        <label for="manager_name">Manager Name:</label>
+        <input type="text" id="manager_name" name="manager_name" required><br><br>
+
+        <input type="submit" value="Save Project">
+    </form>
+
+    <h2>Projects List</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Manager Name</th>
+            <th>Action</th>
+        </tr>
+        {% for project in projects %}
+        <tr>
+            <td>{{ project.id }}</td>
+            <td>{{ project.project_id }}</td>
+            <td>{{ project.project_name }}</td>
+            <td>{{ project.manager_name }}</td>
+            <td><a href="{{ url_for('delete_project', id=project.id) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

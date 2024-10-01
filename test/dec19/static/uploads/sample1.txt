@@ -1,0 +1,42 @@
+import requests
+
+url_get = "https://v4zedbee.boodskap.io/api/micro/service/call/get/zedbee/equipment/list"
+
+headers_get = {
+    'Content-Type': 'application/json',
+    'key': 'd0906e77-e2c6-498d-ac40-331fc7f47780',
+    'domainKey': 'LUMSDQKQZY',
+}
+
+params_get = {
+    'equipmentId': 'ZBEID0116',
+}
+
+response_get = requests.get(url_get, headers=headers_get, params=params_get)
+
+if response_get.status_code == 200:
+    data_get = response_get.json()
+    print("Response (GET):", data_get)
+else:
+    print("Error (GET):", response_get.status_code, response_get.text)
+    url_post = "https://v4zedbee.boodskap.io/api/micro/service/call/get/zedbee/equipment/list?equipmentId:ZBEID0116"
+
+
+    headers_post = {
+        'Content-Type': 'application/json',
+    }
+
+    data_post = {
+        'key': 'd0906e77-e2c6-498d-ac40-331fc7f47780',
+        'domainKey': 'LUMSDQKQZY',
+    }
+
+    response_post = requests.post(url_post, headers=headers_post, json=data_post)
+
+    if response_post.status_code == 200:
+        data_post = response_post.json()
+        print("Response (POST):", data_post)
+    else:
+        print("Error (POST):", response_post.status_code, response_post.text)
+
+
